@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('goods', function (Blueprint $table) {
             $table->id();
+            $table->string('price', 50); //商品金額表示
+            $table->string('image_filename', 100);//商品画像出力
             $table->timestamps();
         });
     }
