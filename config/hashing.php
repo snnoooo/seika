@@ -1,5 +1,49 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+class PasswordController extends Controller{
+    
+    /**
+     * ユーザのパスワードを更新
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+     
+     public function update(Request $request)
+     {
+         //新しいパスワードの長さをバリデート
+         
+         $request->user()->fill([
+             'password' => Hash::make($request->newPassword)
+             ])->save();
+        
+         $hashed = Hash::make('password', [
+         'rounds' => 12,
+         ]);
+         
+         $hashed = Hash::make('password', [
+             'memory' => 1024,
+             'time' => 2,
+             'threads' => 2,
+             ]);
+             
+        if (Hash::check('plain-text', $hashedPassword)){
+            //パスワードが一致
+        }
+        
+        if(Hash::needsRehash($hashed)){
+            $hashed = Hash::make('plain-text');
+        }
+         
+     }
+}
+
 return [
 
     /*
