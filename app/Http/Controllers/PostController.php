@@ -12,8 +12,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
+        return view('posts.index')->with(['posts' => $post->getByLimit()]); 
         //
     }
 
@@ -24,6 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        return view('posts.create');
         //
     }
 
@@ -33,9 +35,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         //
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
 
     /**
@@ -47,6 +52,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        return view('posts.show')->with(['post' => $post]);
+        //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
 
     /**

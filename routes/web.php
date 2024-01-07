@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', function() {
+    return view('posts.index');
+});
+
+Route::get('/', [PostController::class, 'index']);
+
+Route::get('/posts/create', [PostController::class, 'create']);
+
+Route::get('/posts/{post}', [PostController::class ,'show']);
+// '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
+
+Route::post('/posts', [PostController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
