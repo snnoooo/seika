@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('posts_name', 50);//商品名
-            $table->string('image_filename', 100);//挿入する画像ファイル名
+            $table->string('posts_name', 50);//商品名 
+            $table->string('body', 50);
+            $table->string('price', 50); //商品金額表示
+            $table->string('image_filename', 100)->nullable();//挿入する画像ファイル名
             $table->timestamps();
         });
     }
