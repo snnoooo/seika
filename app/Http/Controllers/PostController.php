@@ -17,7 +17,24 @@ class PostController extends Controller
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); 
         //
     }
-
+    
+    public function search(Request $request){
+        $search = $request -> input('search');
+        
+        $query = Post::query();
+        
+        if(!empty($search)){
+            $query->where('posts_name', 'LIKE', "%{$search}%")
+            ->orWhere('body', 'LIKE', "%{$search}%");
+        }
+        
+        $posts = $query -> orderByDesc('created_at')->paginate(5);
+        
+        return view('posts.index')->with([
+            'posts' => $posts,
+            'search' => $search]);
+        
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -55,6 +72,7 @@ class PostController extends Controller
         return view('posts.show')->with(['post' => $post]);
         //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
+    
 
     /**
      * Show the form for editing the specified resource.
