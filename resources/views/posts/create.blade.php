@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Blog Name</h1>
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype = "multipart/form-data">
             @csrf
             <div class="posts_name">
                 <h2>item name</h2>
@@ -17,6 +17,9 @@
                 <textarea name="post[body]" placeholder="商品の説明"></textarea>
                 <h2>Price</h2>
                 <textarea name="post[price]" placeholder="商品の金額"></textarea>
+            </div>
+            <div class = "image">
+                <input type = "file" name = "image">
             </div>
             <input type="submit" value="store"/>
         </form>

@@ -29,6 +29,10 @@ Route::get('/posts/search', [PostController::class, 'search']) ->name('posts.sea
 
 Route::get('/posts/create', [PostController::class, 'create']);
 
+Route::post('/posts', [PostController::class, 'store']);
+
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
 Route::get('/posts/{post}', [PostController::class ,'show']);
 // '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
 

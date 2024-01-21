@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -55,7 +56,11 @@ class PostController extends Controller
     public function store(Request $request, Post $post)
     {
         //
+        //dd($image_url);
+        
         $input = $request['post'];
+        $image_filename = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $input += ['image_filename' => $image_filename];
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
     }
@@ -69,8 +74,9 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
-        return view('posts.show')->with(['post' => $post]);
+        return view('/posts/show')->with(['post' => $post]);
         //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
+        
     }
     
 
