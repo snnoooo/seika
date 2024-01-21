@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
     
     protected $fillable = [
-        'posts_name', 'body', 'price', 
+        'posts_name', 'body', 'price', 'image_filename',
         ];
 
     public function getPaginateByLimit(int $limit_count =  5)

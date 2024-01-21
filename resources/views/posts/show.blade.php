@@ -20,6 +20,11 @@
                 <h3>金額</h3>
                 <p>{{ $post->price }}</p>
             </div>
+            @if($post->image_filename)
+            <div class="content__image">
+                <img src="{{ $post->image_filename }}" alt="画像が読み込めません。"/>
+            </div>
+            @endif
         </div>
         <div class="footer">
             <a href="/">戻る</a>
