@@ -59,8 +59,11 @@ class PostController extends Controller
         //dd($image_url);
         
         $input = $request['post'];
-        $image_filename = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        $input += ['image_filename' => $image_filename];
+        if ($request->file('image') != NULL){
+            $image_filename = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input += ['image_filename' => $image_filename];
+            
+        }
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
     }
@@ -89,6 +92,12 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
+    }
+    
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return redirect('/');
     }
 
     /**

@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     
     protected $fillable = [
-        'posts_name', 'body', 'price', 'image_filename',
+        'posts_name', 'body', 'price', 'image_filename', 'deleted_at,NULL'
         ];
 
     public function getPaginateByLimit(int $limit_count =  5)
