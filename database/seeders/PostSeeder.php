@@ -18,6 +18,8 @@ class PostSeeder extends Seeder
     {
         DB::table('posts')->insert([
             'posts_name' => 'リップ',
+            'body' => 'いい',
+            'price' => '5000',
             'image_filename' => 'ファイル名',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),

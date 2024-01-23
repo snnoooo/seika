@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('body', 50);
             $table->string('price', 50); //商品金額表示
             $table->string('image_filename', 100)->nullable();//挿入する画像ファイル名
+            $table->softDeletes();
             $table->timestamps();
         });
     }

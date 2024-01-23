@@ -6,6 +6,7 @@
         <title>Posts</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="/show.css">
     </head>
     <body>
         <h1 class="title">
@@ -13,7 +14,7 @@
         </h1>
         <div class="content">
             <div class="content__post">
-                <h3>本文</h3>
+                <h3>商品名</h3>
                 <p>{{ $post->body }}</p>
                 </div>
             <div class="content__price">
